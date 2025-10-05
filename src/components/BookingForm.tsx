@@ -1,5 +1,12 @@
 import { useNavigate } from "react-router";
 import React from "react";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 interface BookingFormProps {
   className?: string;
@@ -189,27 +196,49 @@ export default function BookingForm({ className = "" }: BookingFormProps) {
             </div>
           </div>
         </div>
-        {/* Simple popover with native date input to emulate picker */}
-        {openPicker && (
-          <div className="relative mt-3" ref={pickerRef}>
-            <div className="absolute z-10 bg-white border border-gray-200 rounded-lg shadow-md p-3">
-              <input
-                type="date"
-                className="border border-gray-300 rounded-md px-2 py-1"
-                value={(openPicker === "in" ? checkIn : checkOut)
-                  .toISOString()
-                  .slice(0, 10)}
-                min={
-                  openPicker === "out"
-                    ? checkIn.toISOString().slice(0, 10)
-                    : undefined
+        {/* Shadcn-like popover calendar pickers */}
+        <div className="mt-3 flex gap-3">
+          <Popover
+            open={openPicker === "in"}
+            onOpenChange={(o) => setOpenPicker(o ? "in" : null)}
+          >
+            <PopoverTrigger asChild>
+              <Button variant="outline" className="hidden" />
+            </PopoverTrigger>
+            <PopoverContent
+              className="w-auto overflow-hidden p-0 bg-white shadow border border-gray-200 rounded"
+              align="start"
+            >
+              <Calendar
+                mode="single"
+                selected={checkIn}
+                onSelect={(d) =>
+                  d && handleDateChange("in", d.toISOString().slice(0, 10))
                 }
-                onChange={(e) => handleDateChange(openPicker, e.target.value)}
-                autoFocus
               />
-            </div>
-          </div>
-        )}
+            </PopoverContent>
+          </Popover>
+          <Popover
+            open={openPicker === "out"}
+            onOpenChange={(o) => setOpenPicker(o ? "out" : null)}
+          >
+            <PopoverTrigger asChild>
+              <Button variant="outline" className="hidden" />
+            </PopoverTrigger>
+            <PopoverContent
+              className="w-auto overflow-hidden p-0 bg-white shadow border border-gray-200 rounded"
+              align="start"
+            >
+              <Calendar
+                mode="single"
+                selected={checkOut}
+                onSelect={(d) =>
+                  d && handleDateChange("out", d.toISOString().slice(0, 10))
+                }
+              />
+            </PopoverContent>
+          </Popover>
+        </div>
       </div>
 
       {/* Rooms & Guests */}
