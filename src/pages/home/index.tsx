@@ -8,7 +8,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50">
       {/* Gradient Header Background */}
       <div className="relative">
-        <img className="absolute" src="/home-header.png" />
+        <img className="absolute w-full" src="/home-header.png" />
         <div className="relative z-10">
           <Header />
         </div>

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import React from "react";
 
 interface BookingFormProps {
   className?: string;
@@ -66,6 +67,71 @@ const PersonIcon = () => {
 
 export default function BookingForm({ className = "" }: BookingFormProps) {
   const navigate = useNavigate();
+
+  const [checkIn, setCheckIn] = React.useState<Date>(() => new Date());
+  const [checkOut, setCheckOut] = React.useState<Date>(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    return d;
+  });
+  const [openPicker, setOpenPicker] = React.useState<"in" | "out" | null>(null);
+  const pickerRef = React.useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    if (!openPicker) return;
+    function handleOutside(event: MouseEvent | TouchEvent) {
+      if (
+        pickerRef.current &&
+        !pickerRef.current.contains(event.target as Node)
+      ) {
+        setOpenPicker(null);
+      }
+    }
+    document.addEventListener("mousedown", handleOutside);
+    document.addEventListener("touchstart", handleOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("touchstart", handleOutside);
+    };
+  }, [openPicker]);
+
+  function formatViDate(date: Date) {
+    const weekdays = [
+      "Chủ nhật",
+      "Thứ hai",
+      "Thứ ba",
+      "Thứ tư",
+      "Thứ năm",
+      "Thứ sáu",
+      "Thứ bảy",
+    ];
+    const day = weekdays[date.getDay()];
+    const dd = String(date.getDate()).padStart(2, "0");
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const yyyy = date.getFullYear();
+    return `${day}, ${dd}/${mm}/${yyyy}`;
+  }
+
+  function handleDateChange(kind: "in" | "out", value: string) {
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) return;
+    if (kind === "in") {
+      setCheckIn(parsed);
+      if (parsed >= checkOut) {
+        const next = new Date(parsed);
+        next.setDate(next.getDate() + 1);
+        setCheckOut(next);
+      }
+    } else {
+      setCheckOut(parsed);
+      if (parsed <= checkIn) {
+        const prev = new Date(parsed);
+        prev.setDate(prev.getDate() - 1);
+        setCheckIn(prev);
+      }
+    }
+    setOpenPicker(null);
+  }
   return (
     <div className={`bg-white rounded-2xl shadow-xs p-6 mx-4 ${className}`}>
       {/* Destination */}
@@ -87,21 +153,63 @@ export default function BookingForm({ className = "" }: BookingFormProps) {
             <div className="flex justify-between">
               <div className="flex flex-col">
                 <span className="text-sm text-gray-600">Ngày nhận phòng</span>
-                <div className="text-lg font-semibold text-gray-900">
-                  Thứ bảy, 04/11/2025
-                </div>
+                <button
+                  type="button"
+                  className="text-left text-lg font-semibold text-gray-900 underline decoration-dotted"
+                  onClick={() => setOpenPicker("in")}
+                  aria-label="Chọn ngày nhận phòng"
+                >
+                  {formatViDate(checkIn)}
+                </button>
               </div>
               <div className="flex flex-col">
                 <span className="text-sm text-gray-600">Số đêm nghỉ</span>
-                <div className="text-lg font-semibold text-gray-900">1 đêm</div>
+                <div className="text-lg font-semibold text-gray-900">
+                  {Math.max(
+                    1,
+                    Math.ceil(
+                      (checkOut.getTime() - checkIn.getTime()) /
+                        (1000 * 60 * 60 * 24)
+                    )
+                  )}{" "}
+                  đêm
+                </div>
               </div>
             </div>
             <div className="text-xs text-gray-500 mt-1">
               Ngày trả phòng:{" "}
-              <span className="text-black">Thứ tư, 05/11/2024</span>
+              <button
+                type="button"
+                className="text-black underline decoration-dotted"
+                onClick={() => setOpenPicker("out")}
+                aria-label="Chọn ngày trả phòng"
+              >
+                {formatViDate(checkOut)}
+              </button>
             </div>
           </div>
         </div>
+        {/* Simple popover with native date input to emulate picker */}
+        {openPicker && (
+          <div className="relative mt-3" ref={pickerRef}>
+            <div className="absolute z-10 bg-white border border-gray-200 rounded-lg shadow-md p-3">
+              <input
+                type="date"
+                className="border border-gray-300 rounded-md px-2 py-1"
+                value={(openPicker === "in" ? checkIn : checkOut)
+                  .toISOString()
+                  .slice(0, 10)}
+                min={
+                  openPicker === "out"
+                    ? checkIn.toISOString().slice(0, 10)
+                    : undefined
+                }
+                onChange={(e) => handleDateChange(openPicker, e.target.value)}
+                autoFocus
+              />
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Rooms & Guests */}

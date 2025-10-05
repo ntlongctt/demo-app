@@ -1,5 +1,3 @@
-import React from "react";
-
 interface RecentSearch {
   id: string;
   icon: "hotel" | "location";

@@ -53,7 +53,7 @@ export default function Promotions({ className = "" }: PromotionsProps) {
           >
             {promotions.map((promotion) => (
               <div key={promotion.id} className="w-full flex-shrink-0 relative">
-                <img src="/promo.png" />
+                <img className="w-full" src="/promo.png" />
                 {/* <div className="bg-gradient-to-r from-blue-500 to-blue-600 h-48 rounded-xl flex items-center justify-center">
                   <div className="text-center text-white">
                     <div className="text-sm font-medium mb-2">
