@@ -46,7 +46,11 @@ export function Calendar({
 
   function goto(offset: number) {
     const next = addMonths(view, offset);
-    onMonthChange ? onMonthChange(next) : setInternalMonth(next);
+    if (onMonthChange) {
+      onMonthChange(next);
+    } else {
+      setInternalMonth(next);
+    }
   }
 
   return (

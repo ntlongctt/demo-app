@@ -46,13 +46,15 @@ export function PopoverTrigger({
 }) {
   const ctx = React.useContext(PopoverContext);
   if (!ctx) return children;
-  const child = React.Children.only(children);
-  const props = {
+  const child = React.Children.only(children) as React.ReactElement<{
+    onClick?: (e: React.MouseEvent) => void;
+  }>;
+  const props: { onClick: (e: React.MouseEvent) => void } = {
     onClick: (e: React.MouseEvent) => {
-      child.props.onClick?.(e);
+      child.props?.onClick?.(e);
       ctx.setOpen(!ctx.open);
     },
-  } as any;
+  };
   return asChild ? (
     React.cloneElement(child, props)
   ) : (
@@ -74,7 +76,7 @@ export function PopoverContent({
     if (!ctx?.open) return;
     function handleOutside(e: MouseEvent | TouchEvent) {
       if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
-        ctx.setOpen(false);
+        ctx?.setOpen(false);
       }
     }
     document.addEventListener("mousedown", handleOutside);
