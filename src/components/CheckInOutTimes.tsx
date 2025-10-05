@@ -25,11 +25,11 @@ export default function CheckInOutTimes({
               d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <div>
-            <span className="text-sm font-medium text-gray-900">
-              Nhận phòng
-            </span>
-            <div className="text-sm text-gray-600">15:00 - 03:00</div>
+          <div className="flex flex-1 justify-between">
+            <span className="text-sm  text-gray-900">Nhận phòng</span>
+            <div>
+              <div className="text-sm font-bold">15:00 - 03:00</div>
+            </div>
           </div>
         </div>
         <div className="flex items-center">
@@ -46,9 +46,13 @@ export default function CheckInOutTimes({
               d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <div>
-            <span className="text-sm font-medium text-gray-900">Trả phòng</span>
-            <div className="text-sm text-gray-600">trước 11:00</div>
+
+          <div className="flex flex-1 justify-between">
+            <span className="text-sm  text-gray-900">Trả phòng</span>
+
+            <div>
+              <div className="text-sm font-bold">trước 11:00</div>
+            </div>
           </div>
         </div>
       </div>

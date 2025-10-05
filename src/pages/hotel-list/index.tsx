@@ -1,7 +1,7 @@
 import HotelListHeader from "../../components/HotelListHeader";
-import BookingDetailsBar from "../../components/BookingDetailsBar";
 import FilterSortBar from "../../components/FilterSortBar";
 import HotelCard from "../../components/HotelCard";
+import DetailsBar from "@/components/DetailBar";
 
 interface Hotel {
   id: string;
@@ -53,7 +53,7 @@ export default function HotelList() {
   return (
     <div className="min-h-screen bg-gray-50">
       <HotelListHeader />
-      <BookingDetailsBar />
+      <DetailsBar />
       <FilterSortBar />
 
       <main className="p-4">

@@ -3,20 +3,17 @@ interface HotelInfoCardProps {
 }
 
 export default function HotelInfoCard({ className = "" }: HotelInfoCardProps) {
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("vi-VN").format(price);
-  };
-
   return (
-    <div className={`bg-white p-4 ${className}`}>
+    <div className={`bg-white rounded-t-3xl p-4 ${className}`}>
       <div className="space-y-4">
         {/* Hotel Name */}
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-[16px] font-bold text-gray-900">
           Vinpearl Luxury Nha Trang
         </h1>
 
         {/* Rating */}
-        <div className="flex items-center">
+        <div className="flex w-fit rounded-2xl items-center bg-[#ffff0021] px-2">
+          <span className="text-sm text-gray-600 ml-1">Khách sạn</span>
           <div className="flex items-center">
             {[...Array(5)].map((_, i) => (
               <svg
@@ -29,8 +26,6 @@ export default function HotelInfoCard({ className = "" }: HotelInfoCardProps) {
               </svg>
             ))}
           </div>
-          <span className="text-lg font-semibold text-gray-900 ml-2">4,8</span>
-          <span className="text-sm text-gray-600 ml-1">Khách sạn</span>
         </div>
 
         {/* Location */}
@@ -57,22 +52,6 @@ export default function HotelInfoCard({ className = "" }: HotelInfoCardProps) {
           <span className="text-sm text-gray-600">
             Đảo Hòn Tre, Tp. Nha Trang, Tỉnh Khánh Hòa, Việt Nam
           </span>
-        </div>
-
-        {/* Price and Booking */}
-        <div className="bg-gray-50 rounded-lg p-4">
-          <div className="text-sm text-gray-600 mb-2">Giá phòng mỗi đêm từ</div>
-          <div className="flex items-center justify-between">
-            <div>
-              <span className="text-2xl font-bold text-orange-500">
-                {formatPrice(5561400)} ₫
-              </span>
-              <div className="text-xs text-gray-500 mt-1">Đã bao gồm thuế</div>
-            </div>
-            <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
-              Chọn phòng
-            </button>
-          </div>
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ export default function HotelDetailTabs({
             onClick={() => setActiveTab(tab.id)}
             className={`flex-1 py-4 px-2 text-sm font-medium transition-colors duration-200 ${
               activeTab === tab.id
-                ? "text-orange-500 border-b-2 border-orange-500"
+                ? "text-[#e8952f] border-b-2 border-orange-500"
                 : "text-gray-600 hover:text-gray-900"
             }`}
           >

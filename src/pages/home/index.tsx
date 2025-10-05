@@ -14,7 +14,7 @@ export default function Home() {
         </div>
       </div>
 
-      <main className="pt-6 pb-8 relative">
+      <main className="pb-8 relative">
         <BookingForm className="mb-8" />
         <RecentSearches className="mb-8" />
         <Promotions />

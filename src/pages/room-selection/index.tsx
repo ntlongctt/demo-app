@@ -1,7 +1,7 @@
 import RoomSelectionHeader from "../../components/RoomSelectionHeader";
-import BookingDetailsBar from "../../components/BookingDetailsBar";
 import RoomFilterBar from "../../components/RoomFilterBar";
 import RoomCard from "../../components/RoomCard";
+import DetailsBar from "@/components/DetailBar";
 
 interface Room {
   id: string;
@@ -31,6 +31,7 @@ const rooms: Room[] = [
       { id: "wifi", label: "Wifi miễn phí", type: "positive" },
     ],
     price: 5561400,
+    imageUrl: "/select-room.png",
   },
   {
     id: "2",
@@ -44,6 +45,7 @@ const rooms: Room[] = [
       { id: "wifi", label: "Wifi miễn phí", type: "positive" },
     ],
     price: 8342100,
+    imageUrl: "/select-room.png",
   },
   {
     id: "3",
@@ -57,6 +59,7 @@ const rooms: Room[] = [
       { id: "wifi", label: "Wifi miễn phí", type: "positive" },
     ],
     price: 8621100,
+    imageUrl: "/select-room.png",
   },
   {
     id: "4",
@@ -70,6 +73,7 @@ const rooms: Room[] = [
       { id: "wifi", label: "Wifi miễn phí", type: "positive" },
     ],
     price: 9244200,
+    imageUrl: "/select-room.png",
   },
 ];
 
@@ -77,7 +81,7 @@ export default function RoomSelection() {
   return (
     <div className="min-h-screen bg-gray-50">
       <RoomSelectionHeader />
-      <BookingDetailsBar />
+      <DetailsBar />
       <RoomFilterBar />
 
       <main className="p-4">

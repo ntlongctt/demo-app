@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface PromotionsProps {
   className?: string;
@@ -33,6 +33,13 @@ const promotions = [
 
 export default function Promotions({ className = "" }: PromotionsProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % promotions.length);
+    }, 3000);
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div className={`px-4 ${className}`}>

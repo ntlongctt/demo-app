@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import HeaderButton from "./HeaderButton";
 
 interface HotelListHeaderProps {
   className?: string;
@@ -33,53 +34,7 @@ export default function HotelListHeader({
           </button>
           <h1 className="text-xl font-bold text-gray-900">Nha Trang</h1>
         </div>
-        <div className="flex items-center space-x-3">
-          <button className="p-2 hover:bg-gray-100 rounded-full">
-            <svg
-              className="w-5 h-5 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-              />
-            </svg>
-          </button>
-          <button className="p-2 hover:bg-gray-100 rounded-full">
-            <svg
-              className="w-5 h-5 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-          <button className="p-2 hover:bg-gray-100 rounded-full">
-            <svg
-              className="w-5 h-5 text-gray-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
-        </div>
+        <HeaderButton />
       </div>
     </header>
   );

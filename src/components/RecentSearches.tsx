@@ -36,7 +36,7 @@ export default function RecentSearches({
     <div className={`px-4 ${className}`}>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-bold text-gray-900">Tra cứu gần đây</h2>
-        <button className="text-orange-500 text-sm">Xóa</button>
+        <button className="text-[#e8952f] text-sm">Xóa</button>
       </div>
 
       <div className="flex space-x-4 overflow-x-auto pb-2">

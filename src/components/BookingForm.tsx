@@ -67,14 +67,14 @@ const PersonIcon = () => {
 export default function BookingForm({ className = "" }: BookingFormProps) {
   const navigate = useNavigate();
   return (
-    <div className={`bg-white rounded-2xl shadow-lg p-6 mx-4 ${className}`}>
+    <div className={`bg-white rounded-2xl shadow-xs p-6 mx-4 ${className}`}>
       {/* Destination */}
       <div className="mb-6 flex items-start">
         <div className="flex items-center ">
           <Location />
         </div>
         <div className="flex flex-col">
-          <span className="text-sm text-gray-600">Điểm đến, khách sạn</span>
+          <span className="text-sm text-gray-800">Điểm đến, khách sạn</span>
           <div className="text-lg font-semibold text-gray-900">Nha Trang</div>
         </div>
       </div>
@@ -97,7 +97,8 @@ export default function BookingForm({ className = "" }: BookingFormProps) {
               </div>
             </div>
             <div className="text-xs text-gray-500 mt-1">
-              Ngày trả phòng: Thứ tư, 05/11/2024
+              Ngày trả phòng:{" "}
+              <span className="text-black">Thứ tư, 05/11/2024</span>
             </div>
           </div>
         </div>
