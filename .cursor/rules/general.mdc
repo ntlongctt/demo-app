@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+# This app is a web app but for mobile, so always consider the UI for mobile screen first
